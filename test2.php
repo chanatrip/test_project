@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    test
+    ข้อมูลการขายสินค้า
 </body>
 </html>
