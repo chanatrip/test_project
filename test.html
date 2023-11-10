@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Data Display</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <form>
+        <label for="data_type">Choose Data Type:</label>
+        <select id="data_type" name="data_type">
+            <option value="">เลือกสิ</option>
+            <option value="UPS">UPS</option>
+            <option value="TV Stand">TV Stand</option>
+            <option value="ST-LC Patch Cord OS2 Duplex 5M">ST-LC Patch Cord OS2 Duplex 5M</option>
+            
+            <!-- Add more options as needed -->
+        </select>
+    </form>
+
+    <div id="dynamic_data">
+        <!-- Display dynamic data here -->
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // โปรแกรมทำงานเมื่อหน้าเว็บโหลดเสร็จ
+            $('#data_type').change(function() {
+                var selectedValue = $(this).val();
+                getDynamicData(selectedValue);
+            });
+        });
+
+        function getDynamicData(selectedValue) {
+            $.ajax({
+                type: "POST",
+                url: "process.php",
+                data: { dataType: selectedValue },
+                success: function(response) {
+                    $('#dynamic_data').html(response);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
